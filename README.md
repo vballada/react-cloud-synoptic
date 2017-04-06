@@ -67,7 +67,7 @@ $ docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=localhost --env ADV
 * You can see the streamed events at http://localhost:8080
 
 ## Running the demo within Docker
-You can deploy an image for synoptic-client and synoptic-service as Dockerfiles are provided, and then thanks to the docker-compose.yml file launch the following within your Docker engine:
+You can deploy docker images for synoptic-client and synoptic-service as Dockerfiles are provided, and then thanks to the docker-compose.yml file launch the following within your Docker engine:
 
 ```
 
