@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: synoptopic
+          
+---
+
+spring:
+    profiles: docker
+    cloud:
+      stream:
+        kafka:
+          binder:
+            brokers: kafka
+            zkNodes: kafka
