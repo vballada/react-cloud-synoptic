@@ -1,2 +1,52 @@
 # react-cloud-synoptic
 This project is a proof of concept testing the Spring Cloud Stream capabilites combined with WebSockets to push real time information from a microservice to a web client application.
+This is the early stage to build a real time dashboard (synoptic) where events are pushed from the microservice to the front-end.
+
+## synoptic-service
+This Spring Boot microservice hosts the source sending events through the streams binded thanks to Spring Cloud Stream:
+
+```java
+
+@InboundChannelAdapter(Source.OUTPUT)
+public SynopticEvent sendEvent() {
+	return new GenericSynopticEvent("Event " + System.currentTimeMillis());
+}
+
+```
+
+## synoptic-client
+This is the client part, it receives the event on the inbound channel, and forwards it to a STOMP WebSocket: 
+
+```java
+
+@EnableBinding(Sink.class)
+public class SynopticEventSink {
+
+	/**
+	 * Websocket Messaging Template
+	 */
+	private final SimpMessagingTemplate websocket;
+
+	/**
+	 * @param websocket
+	 *            Autowired Websocket Messaging Template
+	 */
+	@Autowired
+	public SynopticEventSink(SimpMessagingTemplate websocket) {
+		this.websocket = websocket;
+	}
+
+	/**
+	 * Receive an event and forwarding to a web client with a websocket
+	 * 
+	 * @param event
+	 *            The receveid event from the synoptic-service source
+	 */
+	@StreamListener(Sink.INPUT)
+	public void receive(SynopticEvent event) {
+		System.out.println("Receive "+event);
+		websocket.convertAndSend("/topic/synop", event);
+	}
+}
+
+```
