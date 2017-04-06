@@ -50,3 +50,17 @@ public class SynopticEventSink {
 }
 
 ```
+
+## Running the demo
+First, you will need a kafka broker running somewhere, for instance in a docker container:
+```
+
+$ docker run -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=localhost --env ADVERTISED_PORT=9092 spotify/kafka
+
+```
+* Launch the SynopticServiceApplication (running on port 8090),
+
+* Launch the SynopticClientApplication (running on port 8080).
+
+* You can see the streamed events at http://localhost:8080
+
