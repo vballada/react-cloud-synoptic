@@ -2,6 +2,8 @@
 This project is a proof of concept testing the Spring Cloud Stream capabilites combined with WebSockets to push real time information from a microservice to a web client application.
 This is the early stage to build a real time dashboard (synoptic) where events are pushed from the microservice to the front-end.
 
+ReactJS will be used for the front-end part.
+
 ## synoptic-service
 This Spring Boot microservice hosts the source sending events through the streams binded thanks to Spring Cloud Stream:
 
