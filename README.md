@@ -46,7 +46,6 @@ public class SynopticEventSink {
 	 */
 	@StreamListener(Sink.INPUT)
 	public void receive(SynopticEvent event) {
-		System.out.println("Receive "+event);
 		websocket.convertAndSend("/topic/synop", event);
 	}
 }
