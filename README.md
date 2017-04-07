@@ -70,7 +70,7 @@ You can deploy docker images for synoptic-client and synoptic-service as Dockerf
 
 ```
 
-docker-compose up
+$ docker-compose up
 
 ```
 
